@@ -35,7 +35,7 @@ function AppContent() {
   const [loading, setLoading] = useState(false)
   const [analysis, setAnalysis] = useState(null)
   const [error, setError] = useState(null)
-  const [activeTab, setActiveTab] = useState(0)
+  const [activeTab, setActiveTab] = useState(1)
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const { page, setPage, rowsPerPage } = usePagination()
@@ -335,19 +335,6 @@ function AppContent() {
     }));
   };
  
- 
-  // const getPaginatedData = () => {
-  //   if (!analysis || !analysis.data) return [];
-  //   const startIndex = page * rowsPerPage;
-  //   const endIndex = startIndex + rowsPerPage;
-  //   return analysis.data
-  //     .slice(startIndex, endIndex)
-  //     .map((row, index) => ({
-  //       id: startIndex + index + 1,
-  //       ...row
-  //     }));
-  // };
- 
   return (
     <>
       <CssBaseline />
@@ -470,24 +457,20 @@ function AppContent() {
               <>
                 <Grid item xs={12}>
                   <Card elevation={3}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                      <Tabs
-                        value={activeTab}
-                        onChange={(e, newValue) => setActiveTab(newValue)}
-                        variant="fullWidth"
-                      >
-                        <Tab
-                          icon={<AssessmentIcon />}
-                          label="Analysis"
-                          iconPosition="start"
-                        />
-                        <Tab
-                          icon={<GridOnIcon />}
-                          label="Data Grid"
-                          iconPosition="start"
-                        />
-                      </Tabs>
-                    </Box>
+                  <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs
+                      value={activeTab}
+                      onChange={(e, newValue) => setActiveTab(newValue)}
+                      variant="fullWidth"
+                    >
+                      <Tab
+                        icon={<GridOnIcon />}
+                        label="Data Grid"
+                        iconPosition="start"
+                      />
+                    </Tabs>
+                  </Box>
+                  
                     {activeTab === 0 ? (
                       <CardContent>
                         <Grid container spacing={2} sx={{ mb: 3 }}>
@@ -713,7 +696,7 @@ function AppContent() {
                           }}
                          
                         />
-                        
+
                       </Box>
                     )}
                   </Card>
